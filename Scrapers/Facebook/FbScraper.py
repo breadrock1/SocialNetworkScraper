@@ -8,10 +8,10 @@ class FbScraper(object):
         self.parsed_data = {}
         self.user_access_token = None
 
-    def __extract_data(self, data: Dict[str, Dict], key: str) -> str:
+    def __extract_data(self, data: Dict[str, Dict], key: str) -> Dict or str:
         return data.get(key) if key in data else ''
 
-    def __get_user_data(self, user_id: int or str) -> Dict[str, Dict] or None:
+    def __get_user_data(self, user_id: int or str) -> Dict[str, Dict or str] or None:
         url = f'https://graph.facebook.com/v9.0/{user_id}'
         fields = 'email,first_name,last_name,birthday,hometown,friends,groups,likes,posts'
         params = f'?fields={fields}&access_token={self.user_access_token}'
