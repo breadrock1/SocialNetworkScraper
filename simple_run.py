@@ -5,11 +5,11 @@ from logging import info
 from json import dump, load
 
 from config import RESULTS_DIR
-from Scrapers.Twitter.TwScraper import TwScraper
-from Scrapers.Facebook.FbScraper import FbScraper
-from Scrapers.LinkedIn.LiScraper import LiScraper
-from Scrapers.Vkontakte.VkScraper import VkScraper
-from Scrapers.MyMail.MyMailScraper import MyMailScraper
+from Scrapers.Social.Twitter.TwScraper import TwScraper
+from Scrapers.Social.Facebook.FbScraper import FbScraper
+from Scrapers.Social.LinkedIn.LiScraper import LiScraper
+from Scrapers.Social.Vkontakte import VkScraper
+from Scrapers.Social.MyMail.MyMailScraper import MyMailScraper
 
 
 def writeOutResults(data: Dict) -> None:
