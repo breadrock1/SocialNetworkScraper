@@ -35,51 +35,56 @@ def _readInputData(path: str) -> Dict[str, Dict]:
     return data
 
 
-def _runScraperScripts(args: Namespace):
-    results_dir = args.o
-    user_creds_file = args.u
-
-    user_creds = _readInputData(path=user_creds_file)
-
+def _scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
     vkScraper = VkScraper()
     liScraper = LiScraper()
     fbScraper = FbScraper()
     twScraper = TwScraper()
     mmScraper = MyMailScraper()
 
-    if 'Vkontakte' in user_creds:
-        vk_id = user_creds.get('Vkontakte').get('id')
+    if 'Vkontakte' in credentials:
+        vk_id = credentials.get('Vkontakte').get('id')
         vkScraper.scrape(user=vk_id)
 
-    if 'LinkedIn' in user_creds:
-        li_id = user_creds.get('LinkedIn').get('id')
+    if 'LinkedIn' in credentials:
+        li_id = credentials.get('LinkedIn').get('id')
         liScraper.scrape(user_id=li_id)
 
-    if 'Twitter' in user_creds:
-        tw_id = user_creds.get('Twitter').get('id')
+    if 'Twitter' in credentials:
+        tw_id = credentials.get('Twitter').get('id')
         # twScraper.scrape(user=tw_id)
 
-    if 'Facebook' in user_creds:
-        fb_id = user_creds.get('Facebook').get('id')
-        fb_token = user_creds.get('Facebook').get('user_access_token')
+    if 'Facebook' in credentials:
+        fb_id = credentials.get('Facebook').get('id')
+        fb_token = credentials.get('Facebook').get('user_access_token')
 
         fbScraper.scrape(user=fb_id, user_access_token=fb_token)
 
-    if 'MyMailRu' in user_creds:
-        mm_id = user_creds.get('MyMailRu').get('id')
-        mm_token = user_creds.get('MyMailRu').get('session_key')
+    if 'MyMailRu' in credentials:
+        mm_id = credentials.get('MyMailRu').get('id')
+        mm_token = credentials.get('MyMailRu').get('session_key')
 
         # mmScraper.scrape(email='')
 
+    return {
+        'Vkontakte': vkScraper.get_parsed_data(),
+        'Facebook': fbScraper.get_parsed_data(),
+        'Twitter': twScraper.get_parsed_data(),
+        'MyMail': mmScraper.get_parsed_data(),
+        'LinkedIn': liScraper.get_parsed_data()
+    }
+
+
+def _runScraperScripts(args: Namespace):
+    results_dir = args.o
+    user_creds_file = args.u
+
+    user_creds = _readInputData(path=user_creds_file)
+    scraped_data = _scrapeSocialNetworks(credentials=user_creds)
+
     _writeOutResults(
         results_dir,
-        {
-            'Vkontakte': vkScraper.get_parsed_data(),
-            'Facebook': fbScraper.get_parsed_data(),
-            'Twitter': twScraper.get_parsed_data(),
-            'MyMail': mmScraper.get_parsed_data(),
-            'LinkedIn': liScraper.get_parsed_data()
-        }
+        scraped_data
     )
 
     info(msg='[+]\tThe scraping process has been done!')
