@@ -1,9 +1,10 @@
-# Social Network Scraper
+# Person Scraper
+This project has been produced to scrape any person information from social networks also from government sites which provides free API functions. The `Person Scraper` is the part of CvCode and HrCode systems which collects person information to common data sampling to train neural network.
 
 ## Installation and launching
 1. Install requirements:
    
-    ```sh 
+    ```shell
        $ pip3 install -r requirements.txt
     ```
 
@@ -12,14 +13,14 @@
 3. Script usage:
 
     ```sh
-        Usage: simple_run.py {path to user json-file}
+        Usage: ./simple_run.py {-u --user-file} [-o --output-file]
     ```
 
     User json-file contains user's contact information that the user specified 
     when sign up to cvcode. Such information is Vkontakte ID, Facebook ID and 
     UserAccessMarker and etc.  
-
-    <details><summary><b>Example of this file</b></summary>
+   
+    <br><details><summary><b>Example of this file</b></summary>
    
         ```json
             {
@@ -42,9 +43,8 @@
                 }
             }
         ```
-    
     </details>
 
 ## Results
 
-The results is json-file. Examples of result you can research into `Tests/Reulst/` directory. 
+The results is common json-file. Examples of result you can research into `Tests/Reulst/` directory. 
