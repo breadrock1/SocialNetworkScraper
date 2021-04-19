@@ -1,4 +1,5 @@
 # Person Scraper
+
 This project has been produced to scrape any person information from social networks also from government sites which provides free API functions. The `Person Scraper` is the part of CvCode and HrCode systems which collects person information to common data sampling to train neural network.
 
 ## Installation and launching
