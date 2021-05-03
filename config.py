@@ -30,4 +30,7 @@ MM_APP_SECRET_KEY = ''
 MM_APP_PRIVATE_KEY = ''
 
 # Emailrep.io
-EMAILREP_API_KEY = ""
+EMAILREP_API_KEY = ''
+
+# Dehashed.com
+DEHASHED_API_KEY = ''
