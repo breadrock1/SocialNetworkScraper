@@ -10,6 +10,7 @@ class DehashedScraper(object):
         self.parsed_data = {}
         self.api_key = DEHASHED_API_KEY
 
+    # TODO: Need add optional to choose email or phone or ... parameter
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
         keys = f'query=email:{email}'
         url = f'https://api.dehashed.com/search?{keys}'

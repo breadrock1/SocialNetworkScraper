@@ -3,7 +3,7 @@
 ## Installation and launching
 1. Install requirements:
    
-    ```sh 
+    ```shell
        $ pip3 install -r requirements.txt
     ```
 
@@ -11,13 +11,13 @@
 
 3. Script usage:
 
-    ```sh
+    ```shell
         Usage: simple_run.py {path to user json-file}
     ```
 
     User json-file contains user's contact information that the user specified 
-    when sign up to cvcode. Such information is Vkontakte ID, Facebook ID and 
-    UserAccessMarker and etc.  
+    when sign up to `cvcode`. Such information is `Vkontakte ID`, `Facebook ID` and 
+    `UserAccessMarker` and e.t.c.  
 
     <details><summary><b>Example of this file</b></summary>
    
@@ -47,4 +47,4 @@
 
 ## Results
 
-The results is json-file. Examples of result you can research into `Tests/Reulst/` directory. 
+The result is json-file. Examples of result you can research into `Tests/Reulst/` directory. 
