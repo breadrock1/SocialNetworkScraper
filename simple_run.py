@@ -67,11 +67,11 @@ def _scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
         # mmScraper.scrape(email='')
 
     return {
-        'Vkontakte': vkScraper.get_parsed_data(),
-        'Facebook': fbScraper.get_parsed_data(),
-        'Twitter': twScraper.get_parsed_data(),
-        'MyMail': mmScraper.get_parsed_data(),
-        'LinkedIn': liScraper.get_parsed_data()
+        'Vkontakte' : vkScraper.get_parsed_data(),
+        'Facebook'  : fbScraper.get_parsed_data(),
+        'Twitter'   : twScraper.get_parsed_data(),
+        'MyMail'    : mmScraper.get_parsed_data(),
+        'LinkedIn'  : liScraper.get_parsed_data()
     }
 
 
@@ -95,10 +95,10 @@ if __name__ == '__main__':
         prog='PersonScraper',
         usage='''
                 ./simple_run.py {-u --user-file} [-o --output-file] 
-            ''',
+        ''',
         description='''
                 This python script automate process of scraping information from social networks and gos-sites
-            ''',
+        ''',
         add_help=True,
         allow_abbrev=True
     )

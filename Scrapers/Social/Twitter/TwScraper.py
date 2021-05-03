@@ -75,10 +75,3 @@ class TwScraper(object):
             timeline = self.__get_tweets(screen_name=user)
 
         info(msg='[+] The scraping Twitter has been done!', level=0)
-
-
-if __name__ == '__main__':
-    screen_name = 'navalny'
-
-    twScraper = TwScraper()
-    twScraper.scrape(user=screen_name)

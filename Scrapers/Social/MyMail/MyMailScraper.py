@@ -90,6 +90,9 @@ class MyMailScraper(object):
         return self.parsed_data
 
     def scrape(self, email: str) -> None:
+
+        info(msg='[*]\tStarting the MyMail scraping process...', level=0)
+
         self.uid = self.__get_user_id(email=email)
 
         if self.uid is None:
@@ -141,7 +144,6 @@ class MyMailScraper(object):
             }
         )
 
-
         # streams
         method = 'stream.get'
         streams = self.__get_data(
@@ -162,8 +164,3 @@ class MyMailScraper(object):
         self.parsed_data = {}
 
         info(msg='[+] The scraping MyMailRu has been done!', level=0)
-
-
-if __name__ == '__main__':
-    myMailScraper = MyMailScraper()
-    myMailScraper.scrape('yuliya.chesnok.88@bk.ru')
