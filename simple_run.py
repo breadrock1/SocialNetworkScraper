@@ -10,6 +10,9 @@ from Scrapers.Social.LinkedIn.LiScraper import LiScraper
 from Scrapers.Social.Vkontakte.VkScraper import VkScraper
 from Scrapers.Social.MyMail.MyMailScraper import MyMailScraper
 
+from Scrapers.Osint.EmailrepScraper import EmailrepScraper
+from Scrapers.Osint.DehashedScraper import DehashedScraper
+
 
 def _writeOutResults(results: str, data: Dict) -> None:
     def generate_filename() -> str:
@@ -35,7 +38,22 @@ def _readInputData(path: str) -> Dict[str, Dict]:
     return data
 
 
-def _scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
+def __scrapeOSINTSites(credentials: Dict[str, Dict]) -> Dict:
+    emailrepScraper = EmailrepScraper()
+    dehashedScraper = DehashedScraper()
+
+    email = credentials.get('OSINT').get('email')
+
+    emailrepScraper.scrape(user_email=email)
+    dehashedScraper.scrape(user_email=email)
+
+    return {
+        'Emailrep': emailrepScraper.get_parsed_data(),
+        'Dehashed': dehashedScraper.get_parsed_data()
+    }
+
+
+def __scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
     vkScraper = VkScraper()
     liScraper = LiScraper()
     fbScraper = FbScraper()
@@ -80,7 +98,14 @@ def _runScraperScripts(args: Namespace):
     user_creds_file = args.u
 
     user_creds = _readInputData(path=user_creds_file)
-    scraped_data = _scrapeSocialNetworks(credentials=user_creds)
+
+    scraped_data = {}
+    scraped_data.update(
+        __scrapeOSINTSites(credentials=user_creds)
+    )
+    scraped_data.update(
+        __scrapeSocialNetworks(credentials=user_creds)
+    )
 
     _writeOutResults(
         results_dir,
