@@ -28,3 +28,6 @@ MM_PASSWORD = ''
 MM_USERNAME = ''
 MM_APP_SECRET_KEY = ''
 MM_APP_PRIVATE_KEY = ''
+
+# Emailrep.io
+EMAILREP_API_KEY = ""
