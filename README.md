@@ -12,15 +12,15 @@ This project has been produced to scrape any person information from social netw
 
 3. Script usage:
 
-    ```sh
-        Usage: ./simple_run.py {-u --user-file} [-o --output-file]
+    ```shell
+        Usage: simple_run.py {path to user json-file}
     ```
 
     User json-file contains user's contact information that the user specified 
-    when sign up to cvcode. Such information is Vkontakte ID, Facebook ID and 
-    UserAccessMarker and etc.  
-   
-    <br><details><summary><b>Example of this file</b></summary>
+    when sign up to `cvcode`. Such information is `Vkontakte ID`, `Facebook ID` and 
+    `UserAccessMarker` and e.t.c.  
+
+    <details><summary><b>Example of this file</b></summary>
    
         ```json
             {
@@ -47,4 +47,4 @@ This project has been produced to scrape any person information from social netw
 
 ## Results
 
-The results is common json-file. Examples of result you can research into `Tests/Reulst/` directory. 
+The result is json-file. Examples of result you can research into `Tests/Results/` directory.
