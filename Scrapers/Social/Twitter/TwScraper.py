@@ -21,7 +21,7 @@ class TwScraper(object):
 
         self.parsed_data = {}
 
-    def __init_tw_api(self) -> Api:
+    def __init_tw_api(self) -> Api or None:
         try:
             api = Api(
                 self.consumer_key,
@@ -31,6 +31,7 @@ class TwScraper(object):
             )
         except TwitterError as e:
             exception(msg=f'[-]\tFailed to initialize Twitter api: {e.message}')
+            return None
 
         return api
 

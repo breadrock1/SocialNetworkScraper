@@ -14,8 +14,8 @@ def _readInputData(path: str) -> Dict[str, Dict]:
     return data
 
 
-if __name__ == '__main__':
-    path_to_file = (Path() / 'Users' / 'yuliya_chesnokova.json').absolute()
+def test_parse_input_file():
+    path_to_file = (Path() / 'Tests' / 'Users' / 'yuliya_chesnokova.json').absolute()
     credentials = _readInputData(str(path_to_file))
 
     try:

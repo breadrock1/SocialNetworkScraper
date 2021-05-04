@@ -20,7 +20,11 @@ class VkScraper(object):
         self.parsed_data = {}
 
     def __extract_data(self, data: Dict[str, str or Dict], key: str) -> Dict:
-        return data.get(key) if key in data else ''
+        try:
+            return data.get(key)
+        except AttributeError as e:
+            print(f'Error! There is no key {key}: {e}')
+            return {}
 
     def __get_vk_data(self, method: str, data: Dict[str, str or Dict]) -> Dict[str, str or Dict] or None:
         try:
@@ -35,12 +39,10 @@ class VkScraper(object):
             return None
 
         try:
-            json_data = response.json().get('response')
+            return response.json().get('response')
         except KeyError as e:
             warning(msg=f'[!]\tFailed to send request: {e}')
-            return None
-
-        return json_data
+            return {}
 
     def get_parsed_data(self) -> Dict[str, str or Dict]:
         return self.parsed_data
@@ -59,7 +61,7 @@ class VkScraper(object):
                 'v'             : self.app_version
             }
         )
-        user_info = vk_data[0]
+        user_info = vk_data[0] if vk_data else {}
 
         first_name = self.__extract_data(data=user_info, key='first_name')
         last_name = self.__extract_data(data=user_info, key='last_name')

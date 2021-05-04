@@ -28,8 +28,12 @@ class MyMailScraper(object):
         self.parsed_data = {}
 
     def __get_user_id(self, email: str) -> int or None:
-        user = search(r"^.+?(?=@)", email).group()
-        domain = search(r"@[a-zA-Z]*", email).group()[1:]
+        try:
+            user = search(r"^.+?(?=@)", email).group()
+            domain = search(r"@[a-zA-Z]*", email).group()[1:]
+        except AttributeError as e:
+            print(f'Failed to parse email address: {e}')
+            return None
 
         url = f'http://appsmail.ru/platform/{domain}/{user}/'
 
@@ -39,7 +43,6 @@ class MyMailScraper(object):
                 verify=False,
                 allow_redirects=False
             )
-
             user_id = response.json().get('uid')
         except RequestException or JSONDecodeError as e:
             exception(msg=f'[-]\tFailed to get user uid: {e.msg}')
