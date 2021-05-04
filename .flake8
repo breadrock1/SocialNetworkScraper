@@ -1,0 +1,118 @@
+[flake8]
+
+################### PROGRAM ################################
+
+# Specify the number of subprocesses that Flake8 will use to run checks in parallel.
+jobs = auto
+
+
+################### OUTPUT #################################
+
+########## VERBOSITY ##########
+
+# Increase the verbosity of Flake8’s output.
+verbose = 1
+# Decrease the verbosity of Flake8’s output.
+quiet = 0
+
+########## FORMATTING ##########
+
+# Select the formatter used to display errors to the user.
+format = default
+# Print the total number of errors.
+count = True
+# Print the source code generating the error/warning in question.
+show-source = True
+# Count the number of occurrences of each error/warning code and print a report.
+statistics = True
+
+
+################### FILE PATTERNS ##########################
+
+# Provide a comma-separated list of glob patterns to exclude from checks.
+exclude =
+    # .* files
+    .flake8
+
+    # git files and folder
+    .git,
+    .gitignore,
+
+    # python cache
+    __pycache__,
+
+    # config files
+    README.md,
+    config.py,
+    requirements.txt,
+
+    # Tests Folders
+    Tests/Users/*,
+    Tests/Results/*
+
+# Provide a comma-separate list of glob patterns to include for checks.
+filename =
+    *.py
+
+
+################### LINTING ################################
+
+########## ENVIRONMENT ##########
+
+# Provide a custom list of builtin functions, objects, names, etc.
+builtins =
+
+########## OPTIONS ##########
+
+# Report all errors, even if it is on the same line as a `# NOQA` comment.
+disable-noqa = False
+# Set the maximum length that any line (with some exceptions) may be.
+max-line-length = 100
+# Set the maximum allowed McCabe complexity value for a block of code.
+max-complexity = 10
+# Toggle whether pycodestyle should enforce matching the indentation of the opening bracket’s line. incluences E131 and E133
+hang-closing = True
+
+########## RULES ##########
+
+# ERROR CODES
+# E/W  - PEP8 errors/warnings (pycodestyle)
+# F    - linting errors (pyflakes)
+# C    - McCabe complexity error (mccabe)
+# W503 - line break before binary operator
+
+# Specify a list of codes to ignore.
+ignore =
+    # closing bracket is missing indentation
+    E133,
+
+    # whitespace before ':'
+    E203,
+
+    # multiple spaces before operator
+    E221,
+
+    # line too long (85 > 79 characters)
+    E501,
+
+    # trailing whitespace
+    W291
+
+# Specify the list of error codes you wish Flake8 to report.
+#select =
+#    E,
+#    W,
+#    F,
+#    C
+# Enable off-by-default extensions.
+enable-extensions =
+
+
+########## DOCSTRING ##########
+
+# Enable PyFlakes syntax checking of doctests in docstrings.
+doctests = True
+# Specify which files are checked by PyFlakes for doctest syntax.
+include-in-doctest =
+# Specify which files are not to be checked by PyFlakes for doctest syntax.
+exclude-in-doctest =

@@ -43,12 +43,12 @@ class LiScraper(object):
             user_info = self.api.get_profile(user_id)
             contact_info = self.api.get_profile_contact_info(user_id)
 
-            profile_id  = self.__extract_data(data=user_info, key='profile_id')
-            first_name  = self.__extract_data(data=user_info, key='firstName')
-            last_name   = self.__extract_data(data=user_info, key='lastName')
-            city        = self.__extract_data(data=user_info, key='geoLocationName')
-            birthdate   = self.__extract_data(data=contact_info, key='birthdate')
-            email       = self.__extract_data(data=contact_info, key='email_address')
+            profile_id = self.__extract_data(data=user_info, key='profile_id')
+            first_name = self.__extract_data(data=user_info, key='firstName')
+            last_name = self.__extract_data(data=user_info, key='lastName')
+            city = self.__extract_data(data=user_info, key='geoLocationName')
+            birthdate = self.__extract_data(data=contact_info, key='birthdate')
+            email = self.__extract_data(data=contact_info, key='email_address')
 
             self.parsed_data.update({
                 'id'            : profile_id,

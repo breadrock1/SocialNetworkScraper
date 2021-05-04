@@ -28,8 +28,12 @@ class MyMailScraper(object):
         self.parsed_data = {}
 
     def __get_user_id(self, email: str) -> int or None:
-        user = search(r"^.+?(?=@)", email).group()
-        domain = search(r"@[a-zA-Z]*", email).group()[1:]
+        try:
+            user = search(r"^.+?(?=@)", email).group()
+            domain = search(r"@[a-zA-Z]*", email).group()[1:]
+        except AttributeError as e:
+            print(f'Failed to parse email address: {e}')
+            return None
 
         url = f'http://appsmail.ru/platform/{domain}/{user}/'
 
@@ -39,7 +43,6 @@ class MyMailScraper(object):
                 verify=False,
                 allow_redirects=False
             )
-
             user_id = response.json().get('uid')
         except RequestException or JSONDecodeError as e:
             exception(msg=f'[-]\tFailed to get user uid: {e.msg}')
@@ -60,8 +63,8 @@ class MyMailScraper(object):
         response = post(
             url='https://appsmail.ru/oauth/token',
             headers={
-                'Host': 'appsmail.ru',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Host'          : 'appsmail.ru',
+                'Content-Type'  : 'application/x-www-form-urlencoded'
             },
             data=data,
             verify=False,
@@ -119,13 +122,14 @@ class MyMailScraper(object):
                 'uids'          : self.uid,
                 'sig'           : self.__gen_sig_key(
                     data={
-                        'method'    : method,
-                        'app_id'    : str(self.app_id),
-                        'uids'      : self.uid
+                        'method': method,
+                        'app_id': str(self.app_id),
+                        'uids'  : self.uid
                     }
                 )
             }
         )
+        self.parsed_data.update(user_info)
 
         # friends -> list ids
         method = 'friends.get'
@@ -136,13 +140,14 @@ class MyMailScraper(object):
                 'ext'       : 0,
                 'sig'       : self.__gen_sig_key(
                     data={
-                        'method'    : method,
-                        'app_id'    : str(self.app_id),
-                        'uids'      : self.uid
+                        'method': method,
+                        'app_id': str(self.app_id),
+                        'uids'  : self.uid
                     }
                 )
             }
         )
+        self.parsed_data.update(friends)
 
         # streams
         method = 'stream.get'
@@ -154,13 +159,12 @@ class MyMailScraper(object):
                 'limit'         : 100,
                 'sig'           : self.__gen_sig_key(
                     data={
-                        'method'        : method,
-                        'app_id'        : str(self.app_id)
+                        'method': method,
+                        'app_id': str(self.app_id)
                     }
                 )
             }
         )
-
-        self.parsed_data = {}
+        self.parsed_data.update(streams)
 
         info(msg='[+] The scraping MyMailRu has been done!', level=0)

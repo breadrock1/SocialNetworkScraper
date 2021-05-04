@@ -1,5 +1,4 @@
-json
-argparse
+argparse~=1.4.0
 logger~=1.4
 urllib3~=1.26.3
 requests~=2.25.1

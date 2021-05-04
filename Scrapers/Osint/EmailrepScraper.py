@@ -1,4 +1,5 @@
 from typing import Dict
+from json import JSONDecodeError
 from logging import exception, info
 from requests import get, RequestException
 
@@ -13,7 +14,7 @@ class EmailrepScraper(object):
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
         try:
             data = get(
-                url= f'https://emailrep.io/{email}',
+                url=f'https://emailrep.io/{email}',
                 headers={
                     'Key': self.api_key,
                     'User-Agent': 'Mozilla/5.0 CvCodeApp'
@@ -23,9 +24,12 @@ class EmailrepScraper(object):
             )
         except RequestException as e:
             exception(msg=f'[!]\tError while getting user information: {e.strerror}')
-            return None
+            return {}
 
-        return data.json()
+        try:
+            return data.json()
+        except JSONDecodeError:
+            return {}
 
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data

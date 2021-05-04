@@ -6,7 +6,7 @@ from config import (
     TW_CONSUMER_KEY,
     TW_CONSUMER_SECRET,
     TW_ACCESS_TOKEN_KEY,
-    TW_ACCESS_TOKEN_SECRET_KEY
+    TW_ACCESS_TOKEN_SECRET
 )
 
 
@@ -17,11 +17,11 @@ class TwScraper(object):
         self.consumer_key = TW_CONSUMER_KEY
         self.consumer_secret_key = TW_CONSUMER_SECRET
         self.access_token_key = TW_ACCESS_TOKEN_KEY
-        self.access_token_secret_key = TW_ACCESS_TOKEN_SECRET_KEY
+        self.access_token_secret_key = TW_ACCESS_TOKEN_SECRET
 
         self.parsed_data = {}
 
-    def __init_tw_api(self) -> Api:
+    def __init_tw_api(self) -> Api or None:
         try:
             api = Api(
                 self.consumer_key,
@@ -31,6 +31,7 @@ class TwScraper(object):
             )
         except TwitterError as e:
             exception(msg=f'[-]\tFailed to initialize Twitter api: {e.message}')
+            return None
 
         return api
 
@@ -62,16 +63,26 @@ class TwScraper(object):
 
         self.api = self.__init_tw_api()
 
-        if self.api is not None:
-            
-            user = self.api.GetUser()
-            friends = self.api.GetFriends()
-            followers = self.api.GetFollowers()
-            follower_ids = self.api.GetFollowerIDs()
-            retweeters = self.api.GetRetweeters()
-            retweets = self.api.GetUserRetweets()
-            replies = self.api.GetReplies()
-            favorites = self.api.GetFavorites()
-            timeline = self.__get_tweets(screen_name=user)
+        if self.api is None:
+            return
+
+        user            = self.api.GetUser()
+        friends         = self.api.GetFriends()
+        # followers       = self.api.GetFollowers()
+        followers_ids   = self.api.GetFollowerIDs()
+        # retweeters      = self.api.GetRetweeters()
+        retweets        = self.api.GetUserRetweets()
+        replies         = self.api.GetReplies()
+        favorites       = self.api.GetFavorites()
+        # timeline        = self.__get_tweets(screen_name=user)
+
+        self.parsed_data = user
+        self.parsed_data.update({
+            'friends'   : friends,
+            'followers' : followers_ids,
+            'retweets'  : retweets,
+            'replies'   : replies,
+            'favorites' : favorites
+        })
 
         info(msg='[+] The scraping Twitter has been done!', level=0)

@@ -1,4 +1,5 @@
 from typing import Dict
+from json import JSONDecodeError
 from logging import exception, info
 from requests import get, RequestException
 
@@ -27,9 +28,12 @@ class DehashedScraper(object):
             )
         except RequestException as e:
             exception(msg=f'[!]\tError while getting user information: {e.strerror}')
-            return None
+            return {}
 
-        return data.json()
+        try:
+            return data.json()
+        except JSONDecodeError:
+            return {}
 
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data
@@ -38,15 +42,13 @@ class DehashedScraper(object):
 
         info(msg='[+]\tStarting the Dehashed scraping process...', level=0)
 
-        user_phone_data = self.__get_user_data(email=user_email) \
-            if user_phone else {}
+        self.parsed_data.update(
+            self.__get_user_data(email=user_email)
+        )
 
-        user_email_data = self.__get_user_data(email=user_email) \
-            if user_email else {}
-
-        self.parsed_data.update({
-            user_phone_data,
-            user_email_data
-        })
+        # TODO: need add ability to get information by phone
+        # self.parsed_data.update(
+        #     self.__get_user_data(email=user_email)
+        # )
 
         info(msg='[+]\tThe Dehashed scraping process has been done!', level=0)
