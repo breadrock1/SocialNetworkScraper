@@ -60,8 +60,8 @@ class MyMailScraper(object):
         response = post(
             url='https://appsmail.ru/oauth/token',
             headers={
-                'Host': 'appsmail.ru',
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Host'          : 'appsmail.ru',
+                'Content-Type'  : 'application/x-www-form-urlencoded'
             },
             data=data,
             verify=False,

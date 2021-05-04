@@ -1,5 +1,7 @@
 .*
 
+__pycache__
+
 # Tests data
 Tests/Users/*
 Tests/Results/*

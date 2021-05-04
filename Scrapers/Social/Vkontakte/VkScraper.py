@@ -53,10 +53,10 @@ class VkScraper(object):
         vk_data = self.__get_vk_data(
             method='users.get',
             data={
-                'user_ids': user,
-                'fields': 'bdate,city,country',
-                'access_token': self.access_token,
-                'v': self.app_version
+                'user_ids'      : user,
+                'fields'        : 'bdate,city,country',
+                'access_token'  : self.access_token,
+                'v'             : self.app_version
             }
         )
         user_info = vk_data[0]
@@ -70,9 +70,9 @@ class VkScraper(object):
         vk_data = self.__get_vk_data(
             method='friends.get',
             data={
-                'user_id': user,
-                'access_token': self.access_token,
-                'v': self.app_version
+                'user_id'       : user,
+                'access_token'  : self.access_token,
+                'v'             : self.app_version
             }
         )
         user_friends = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
@@ -81,9 +81,9 @@ class VkScraper(object):
         vk_data = self.__get_vk_data(
             method='users.getFollowers',
             data={
-                'user_id': user,
-                'access_token': self.access_token,
-                'v': self.app_version
+                'user_id'       : user,
+                'access_token'  : self.access_token,
+                'v'             : self.app_version
             }
         )
         user_followers = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
@@ -92,11 +92,11 @@ class VkScraper(object):
         vk_data = self.__get_vk_data(
             method='groups.get',
             data={
-                'user_id': user,
-                'extended': 1,
-                'filter': 'all',
-                'access_token': self.access_token,
-                'v': self.app_version
+                'user_id'       : user,
+                'extended'      : 1,
+                'filter'        : 'all',
+                'access_token'  : self.access_token,
+                'v'             : self.app_version
             }
         )
         user_groups = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
@@ -105,11 +105,11 @@ class VkScraper(object):
         vk_data = self.__get_vk_data(
             method='wall.get',
             data={
-                'owner_id': user,
-                'extended': 1,
-                'filter': 'all',
-                'access_token': self.access_token,
-                'v': self.app_version
+                'owner_id'      : user,
+                'extended'      : 1,
+                'filter'        : 'all',
+                'access_token'  : self.access_token,
+                'v'             : self.app_version
             }
         )
         user_wall = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
@@ -122,10 +122,10 @@ class VkScraper(object):
             vk_data = self.__get_vk_data(
                 method='wall.getReposts',
                 data={
-                    'owner_id': user,
-                    'post_id': post_id,
-                    'access_token': self.access_token,
-                    'v': self.app_version
+                    'owner_id'      : user,
+                    'post_id'       : post_id,
+                    'access_token'  : self.access_token,
+                    'v'             : self.app_version
                 }
             )
             user_reposts = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
@@ -134,12 +134,12 @@ class VkScraper(object):
             vk_data = self.__get_vk_data(
                 method='wall.getComments',
                 data={
-                    'owner_id': user,
-                    'post_id': post_id,
-                    'extended': 1,
-                    'filter': 'all',
-                    'access_token': self.app_service,
-                    'v': self.app_version
+                    'owner_id'      : user,
+                    'post_id'       : post_id,
+                    'extended'      : 1,
+                    'filter'        : 'all',
+                    'access_token'  : self.app_service,
+                    'v'             : self.app_version
                 }
             )
             user_comments = [] if vk_data is None else self.__extract_data(data=vk_data, key='items')
