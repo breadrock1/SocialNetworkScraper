@@ -70,7 +70,7 @@ def __scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
 
     if 'Twitter' in credentials:
         tw_id = credentials.get('Twitter').get('id')
-        # twScraper.scrape(user=tw_id)
+        twScraper.scrape(user=tw_id)
 
     if 'Facebook' in credentials:
         fb_id = credentials.get('Facebook').get('id')
@@ -80,16 +80,14 @@ def __scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
 
     if 'MyMailRu' in credentials:
         mm_id = credentials.get('MyMailRu').get('id')
-        mm_token = credentials.get('MyMailRu').get('session_key')
-
-        # mmScraper.scrape(email='')
+        mmScraper.scrape(email=mm_id)
 
     return {
-        'Vkontakte': vkScraper.get_parsed_data(),
-        'Facebook': fbScraper.get_parsed_data(),
-        'Twitter': twScraper.get_parsed_data(),
-        'MyMail': mmScraper.get_parsed_data(),
-        'LinkedIn': liScraper.get_parsed_data()
+        'Vkontakte' : vkScraper.get_parsed_data(),
+        'Facebook'  : fbScraper.get_parsed_data(),
+        'Twitter'   : twScraper.get_parsed_data(),
+        'MyMail'    : mmScraper.get_parsed_data(),
+        'LinkedIn'  : liScraper.get_parsed_data()
     }
 
 

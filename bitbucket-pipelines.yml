@@ -2,18 +2,16 @@ image: python:3.8
 
 pipelines:
   default:
-    - parallel:
-      - step:
-          name: Run Tests
-          caches:
-            - pip
-          script:
-            - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - pip install pytest
-            - pytest -v Tests/* --junitxml=test-reports/report.xml
-      - step:
-          name: Code style
-          script:
-            # Enforce style consistency across Python projects https://flake8.pycqa.org/en/latest/manpage.html
-            - pip install flake8
-            - flake8 . --extend-exclude=dist,build --show-source --statistics
+    - step:
+        name: Code style
+        script:
+          - pip install flake8
+          - flake8 . --config .flake8 --show-source --statistics
+    - step:
+        name: Run Tests
+        caches:
+          - pip
+        script:
+          - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          - pip install pytest
+          - pytest -v Tests/* --junitxml=test-reports/report.xml

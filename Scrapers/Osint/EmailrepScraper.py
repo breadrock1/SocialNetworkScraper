@@ -13,7 +13,7 @@ class EmailrepScraper(object):
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
         try:
             data = get(
-                url= f'https://emailrep.io/{email}',
+                url=f'https://emailrep.io/{email}',
                 headers={
                     'Key': self.api_key,
                     'User-Agent': 'Mozilla/5.0 CvCodeApp'

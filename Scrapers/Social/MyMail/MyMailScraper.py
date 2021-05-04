@@ -116,13 +116,14 @@ class MyMailScraper(object):
                 'uids'          : self.uid,
                 'sig'           : self.__gen_sig_key(
                     data={
-                        'method'    : method,
-                        'app_id'    : str(self.app_id),
-                        'uids'      : self.uid
+                        'method': method,
+                        'app_id': str(self.app_id),
+                        'uids'  : self.uid
                     }
                 )
             }
         )
+        self.parsed_data.update(user_info)
 
         # friends -> list ids
         method = 'friends.get'
@@ -133,14 +134,14 @@ class MyMailScraper(object):
                 'ext'       : 0,
                 'sig'       : self.__gen_sig_key(
                     data={
-                        'method'    : method,
-                        'app_id'    : str(self.app_id),
-                        'uids'      : self.uid
+                        'method': method,
+                        'app_id': str(self.app_id),
+                        'uids'  : self.uid
                     }
                 )
             }
         )
-
+        self.parsed_data.update(friends)
 
         # streams
         method = 'stream.get'
@@ -152,18 +153,12 @@ class MyMailScraper(object):
                 'limit'         : 100,
                 'sig'           : self.__gen_sig_key(
                     data={
-                        'method'        : method,
-                        'app_id'        : str(self.app_id)
+                        'method': method,
+                        'app_id': str(self.app_id)
                     }
                 )
             }
         )
-
-        self.parsed_data = {}
+        self.parsed_data.update(streams)
 
         info(msg='[+] The scraping MyMailRu has been done!', level=0)
-
-
-if __name__ == '__main__':
-    myMailScraper = MyMailScraper()
-    myMailScraper.scrape('yuliya.chesnok.88@bk.ru')
