@@ -29,8 +29,19 @@ MM_USERNAME = ''
 MM_APP_SECRET_KEY = ''
 MM_APP_PRIVATE_KEY = ''
 
-# Emailrep.io
+# nalog.ru
+NPD_API_KEY = ''
+
+# fssprus.ru
+FSSPRUS_API_KEY = ''
+
+#
+
+# bankrot.fedresurs.ru
+FEDRES_API_KEY = ''
+
+# emailrep.io
 EMAILREP_API_KEY = ''
 
-# Dehashed.com
+# dehashed.com
 DEHASHED_API_KEY = ''
