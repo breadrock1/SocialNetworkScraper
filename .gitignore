@@ -1,6 +1,7 @@
 .*
 
-__pycache__
+venv/
+__pycache__/
 
 # Tests data
 Tests/Users/*
