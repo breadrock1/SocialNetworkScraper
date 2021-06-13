@@ -42,6 +42,15 @@ def launchScrapingProcess(credentials: json, mode: str) -> Dict:
     return scraped_data
 
 
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
+def indexPage():
+    if request.method == 'GET':
+        return {}
+
+    abort(405)
+
+
 @app.route('/full_scraping', methods=['POST'])
 def launchFullScraping():
     if request.method == 'POST':
