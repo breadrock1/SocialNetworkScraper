@@ -3,6 +3,7 @@ import json
 from typing import Dict, Union
 from flask import Flask, request, abort
 
+from config import HOST, PORT
 from Scrapers.SraperManager import ScraperManager
 
 
@@ -85,6 +86,4 @@ def launchOsintScraping():
 
 
 if __name__ == "__main__":
-    port = 8080
-    host = "0.0.0.0"
-    app.run(host=host, port=port)
+    app.run(host=HOST, port=PORT)
