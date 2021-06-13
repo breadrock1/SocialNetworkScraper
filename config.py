@@ -1,5 +1,5 @@
 # Backend Flask config
-HOST = 0.0.0.0
+HOST = '0.0.0.0'
 PORT = 7654
 
 # Vkontakte
