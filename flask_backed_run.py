@@ -1,6 +1,6 @@
 import json
 
-from typing import Dict, Union
+from typing import Dict
 from flask import Flask, request, abort
 
 from config import HOST, PORT
@@ -34,8 +34,8 @@ def launchScrapingProcess(credentials: json, mode: str) -> Dict:
     return scraped_data
 
 
-@app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def indexPage():
     return {}
 
