@@ -1,3 +1,5 @@
+import json
+
 from typing import Dict
 
 from Scrapers.Osint.DehashedScraper import DehashedScraper
@@ -14,7 +16,7 @@ class ScraperManager(object):
         pass
 
     @staticmethod
-    def scrapeOSINTSites(credentials: Dict[str, Dict]) -> Dict:
+    def scrapeOSINTSites(credentials: json) -> Dict:
         emailrepScraper = EmailrepScraper()
         dehashedScraper = DehashedScraper()
 
