@@ -16,16 +16,8 @@ def test_social_scrapers():
     vkScraper.scrape(user='')
     mmScraper.scrape(email='')
     liScraper.scrape(user_id='')
-
-    # tw_id = 'Yulia58368327'
-    # twScraper.scrape(user=tw_id)
-
-    # fb_id = 101313718664029
-    # fb_token = 'EAAMTR2pPmqUBACIvzmRoZBJTbLwqlioQZBLkxU5xQHoTn3WRxhh91xE6knuZCCRWoKWMDr' \
-    #            'OzebuCzSCLUuMT6S531ok54SYF8yTqecndLULRl0TlVVjdCkDOjRJKd4ibZCbZC4pI1vECV' \
-    #            'di2i9Qgsh4yPI3W7gPIfomFyO3Im0cxQry9ZCsdhwQxniqFtqfAmmjNf6ZBs7NZAtFtsCZA' \
-    #            'RGUPGbwXkLRVfijaVKNg69hThCwZDZD'
-    # fbScraper.scrape(user=fb_id, user_access_token=fb_token)
+    twScraper.scrape(user='')
+    fbScraper.scrape(user=0, user_access_token='')
 
     assert vkScraper.get_parsed_data()
     assert fbScraper.get_parsed_data() == {}
