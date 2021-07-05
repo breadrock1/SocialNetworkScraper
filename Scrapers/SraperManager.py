@@ -1,6 +1,6 @@
 import json
 
-from typing import Dict
+from typing import Dict, List
 
 from Scrapers.Osint.DehashedScraper import DehashedScraper
 from Scrapers.Osint.EmailrepScraper import EmailrepScraper
@@ -14,6 +14,21 @@ from Scrapers.Social.Vkontakte.VkScraper import VkScraper
 class ScraperManager(object):
     def __init__(self):
         pass
+
+    @staticmethod
+    def scrapeVkontakte(ids: List[str]) -> Dict:
+        vkScraper = VkScraper()
+
+        scraped_data = {}
+        [
+            scraped_data.update({
+                vk_id: vkScraper.scrape(user=vk_id)
+            })
+
+            for vk_id in ids
+        ]
+
+        return scraped_data
 
     @staticmethod
     def scrapeOSINTSites(credentials: json) -> Dict:
