@@ -70,6 +70,7 @@ def test_backend_module():
         response_full_scraping = _sendRequestToScraping(mode='full_scraping', json_data=user_data)
 
         assert response_index == {}
+        # TODO: WTF???
         assert response_vk_scraping == {}
         assert response_full_scraping == result_full_scraping_response
 
