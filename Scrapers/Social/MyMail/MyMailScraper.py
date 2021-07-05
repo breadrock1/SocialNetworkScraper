@@ -1,9 +1,9 @@
 from re import search
 from typing import Dict
-from json import JSONDecodeError
-from requests import get, post, RequestException
-from logging import exception, info
 from hashlib import md5
+from json import JSONDecodeError
+from logging import exception, info
+from requests import get, post, RequestException
 
 from config import (
     MM_APP_ID,

@@ -11,6 +11,9 @@ class FbScraper(object):
     def __extract_data(self, data: Dict[str, Dict], key: str) -> Dict or str:
         return data.get(key) if key in data else ''
 
+    def __checkResponseOnError(self, data: Dict) -> bool:
+        return data.get("error")
+
     def __get_user_data(self, user_id: int or str) -> Dict[str, Dict or str] or None:
         url = f'https://graph.facebook.com/v9.0/{user_id}'
         fields = 'email,first_name,last_name,birthday,hometown,friends,groups,likes,posts'
@@ -25,12 +28,16 @@ class FbScraper(object):
                 },
                 verify=False,
                 allow_redirects=False
-            )
+            ).json()
+
         except RequestException as e:
             exception(msg=f'[!]\tError while getting user page information: {e.strerror}')
             return None
 
-        return data.json()
+        if self.__checkResponseOnError(data):
+            return None
+
+        return data
 
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data

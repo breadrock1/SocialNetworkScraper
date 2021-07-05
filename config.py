@@ -1,3 +1,7 @@
+# Backend Flask config
+HOST = '127.0.0.1'
+PORT = 7654
+
 # Vkontakte
 VK_APP_VERSION = 5.126
 VK_APP_ID = 12345678
