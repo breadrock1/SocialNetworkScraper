@@ -4,7 +4,7 @@ from logging import info
 from json import dump, load
 from argparse import ArgumentParser, Namespace
 
-from Scrapers.SraperManager import ScraperManager
+from Scrapers.ScraperManager import ScraperManager
 
 
 def _writeOutResults(results: str, data: Dict) -> None:
