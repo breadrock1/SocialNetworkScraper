@@ -2,6 +2,8 @@ from typing import Dict
 from logging import info, warning
 from requests import post, RequestException
 
+from Scrapers.Scraper import Scraper
+
 from config import (
     VK_APP_VERSION,
     VK_APP_SERVICE_KEY,
@@ -11,8 +13,10 @@ from config import (
 OK_STATUS_CODE = 200
 
 
-class VkScraper(object):
+class VkScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.app_version = VK_APP_VERSION
         self.app_service = VK_APP_SERVICE_KEY
         self.access_token = VK_APP_ACCESS_TOKEN

@@ -3,11 +3,15 @@ from json import JSONDecodeError
 from logging import exception, info
 from requests import get, RequestException
 
+from Scrapers.Scraper import Scraper
+
 from config import EMAILREP_API_KEY
 
 
-class EmailrepScraper(object):
+class EmailrepScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.parsed_data = {}
         self.api_key = EMAILREP_API_KEY
 

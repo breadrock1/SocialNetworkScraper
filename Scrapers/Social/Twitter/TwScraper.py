@@ -2,6 +2,8 @@ from typing import Dict, List
 from logging import info, exception
 from twitter import Api, TwitterError
 
+from Scrapers.Scraper import Scraper
+
 from config import (
     TW_CONSUMER_KEY,
     TW_CONSUMER_SECRET,
@@ -10,8 +12,10 @@ from config import (
 )
 
 
-class TwScraper(object):
+class TwScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.api = None
 
         self.consumer_key = TW_CONSUMER_KEY

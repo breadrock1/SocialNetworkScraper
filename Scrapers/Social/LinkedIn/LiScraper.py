@@ -2,14 +2,18 @@ from typing import Dict
 from linkedin_api import Linkedin
 from logging import info, exception
 
+from Scrapers.Scraper import Scraper
+
 from config import (
     LI_USERNAME,
     LI_PASSWORD
 )
 
 
-class LiScraper(object):
+class LiScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.api = None
 
         self.app_user = LI_USERNAME

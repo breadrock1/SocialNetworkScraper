@@ -5,6 +5,8 @@ from json import JSONDecodeError
 from logging import exception, info
 from requests import get, post, RequestException
 
+from Scrapers.Scraper import Scraper
+
 from config import (
     MM_APP_ID,
     MM_USERNAME,
@@ -14,8 +16,10 @@ from config import (
 )
 
 
-class MyMailScraper(object):
+class MyMailScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.app_id = MM_APP_ID
         self.username = MM_USERNAME
         self.password = MM_PASSWORD

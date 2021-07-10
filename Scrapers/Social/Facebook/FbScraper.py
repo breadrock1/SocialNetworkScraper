@@ -2,9 +2,13 @@ from typing import Dict
 from logging import exception, info
 from requests import get, RequestException
 
+from Scrapers.Scraper import Scraper
 
-class FbScraper(object):
+
+class FbScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.parsed_data = {}
         self.user_access_token = None
 

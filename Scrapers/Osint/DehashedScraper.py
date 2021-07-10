@@ -3,11 +3,15 @@ from json import JSONDecodeError
 from logging import exception, info
 from requests import get, RequestException
 
+from Scrapers.Scraper import Scraper
+
 from config import DEHASHED_API_KEY
 
 
-class DehashedScraper(object):
+class DehashedScraper(Scraper):
     def __init__(self):
+        super().__init__()
+
         self.parsed_data = {}
         self.api_key = DEHASHED_API_KEY
 
