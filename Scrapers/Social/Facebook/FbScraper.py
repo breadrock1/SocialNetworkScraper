@@ -6,11 +6,11 @@ from Scrapers.Scraper import Scraper
 
 
 class FbScraper(Scraper):
-    def __init__(self):
+    def __init__(self, user_access_token: str):
         super().__init__()
 
         self.parsed_data = {}
-        self.user_access_token = None
+        self.user_access_token = user_access_token
 
     @staticmethod
     def __extract_data(data: Dict[str, Dict], key: str) -> Dict or str:
@@ -48,11 +48,10 @@ class FbScraper(Scraper):
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data
 
-    def scrape(self, user: int, user_access_token: str) -> None:
+    def scrape(self, user: int) -> None:
 
         info(msg='[+]\tStarting the Facebook scraping process...', level=0)
 
-        self.user_access_token = user_access_token
         user_info = self.__get_user_data(user_id=user)
 
         if user_info is not None:

@@ -32,9 +32,9 @@ class ScraperManager(object):
 
     @staticmethod
     def scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
+        fbScraper = None
         vkScraper = VkScraper()
         liScraper = LiScraper()
-        fbScraper = FbScraper()
         twScraper = TwScraper()
         mmScraper = MyMailScraper()
 
@@ -54,7 +54,8 @@ class ScraperManager(object):
             fb_id = credentials.get('Facebook').get('id')
             fb_token = credentials.get('Facebook').get('user_access_token')
 
-            fbScraper.scrape(user=fb_id, user_access_token=fb_token)
+            fbScraper = FbScraper(user_access_token=fb_token)
+            fbScraper.scrape(user=fb_id)
 
         if 'MyMailRu' in credentials:
             mm_id = credentials.get('MyMailRu').get('id')

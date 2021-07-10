@@ -9,15 +9,15 @@ from Scrapers.Social.Vkontakte.VkScraper import VkScraper
 def test_social_scrapers():
     vkScraper = VkScraper()
     liScraper = LiScraper()
-    fbScraper = FbScraper()
     twScraper = TwScraper()
     mmScraper = MyMailScraper()
+    fbScraper = FbScraper(user_access_token='')
 
     vkScraper.scrape(user='')
     mmScraper.scrape(email='')
     liScraper.scrape(user_id='')
     twScraper.scrape(user='')
-    fbScraper.scrape(user=0, user_access_token='')
+    fbScraper.scrape(user=0)
 
     assert vkScraper.get_parsed_data()
     assert fbScraper.get_parsed_data() == {}
