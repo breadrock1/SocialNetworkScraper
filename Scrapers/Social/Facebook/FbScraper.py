@@ -12,10 +12,12 @@ class FbScraper(Scraper):
         self.parsed_data = {}
         self.user_access_token = None
 
-    def __extract_data(self, data: Dict[str, Dict], key: str) -> Dict or str:
+    @staticmethod
+    def __extract_data(data: Dict[str, Dict], key: str) -> Dict or str:
         return data.get(key) if key in data else ''
 
-    def __checkResponseOnError(self, data: Dict) -> bool:
+    @staticmethod
+    def __checkResponseOnError(data: Dict) -> bool:
         return data.get("error")
 
     def __get_user_data(self, user_id: int or str) -> Dict[str, Dict or str] or None:

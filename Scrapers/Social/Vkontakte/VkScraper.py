@@ -23,14 +23,16 @@ class VkScraper(Scraper):
 
         self.parsed_data = {}
 
-    def __extract_data(self, data: Dict[str, str or Dict], key: str) -> Dict:
+    @staticmethod
+    def __extract_data(data: Dict[str, str or Dict], key: str) -> Dict:
         try:
             return data.get(key)
         except AttributeError as e:
             print(f'Error! There is no key {key}: {e}')
             return {}
 
-    def __get_vk_data(self, method: str, data: Dict[str, str or Dict]) -> Dict[str, str or Dict] or None:
+    @staticmethod
+    def __get_vk_data(method: str, data: Dict[str, str or Dict]) -> Dict[str, str or Dict] or None:
         try:
             response = post(
                 url=f'https://api.vk.com/method/{method}',

@@ -31,7 +31,8 @@ class MyMailScraper(Scraper):
 
         self.parsed_data = {}
 
-    def __get_user_id(self, email: str) -> int or None:
+    @staticmethod
+    def __get_user_id(email: str) -> int or None:
         try:
             user = search(r"^.+?(?=@)", email).group()
             domain = search(r"@[a-zA-Z]*", email).group()[1:]
@@ -54,16 +55,8 @@ class MyMailScraper(Scraper):
 
         return user_id
 
-    def __gen_sig_key(self, data: Dict[str, str]) -> str:
-        sort = dict(sorted(data.items()))
-        params = ''.join(
-            [(k + '=' + v) for k, v in sort.items()]
-        )
-        params = self.uid + params + self.app_private_key
-
-        return md5(params.encode('utf-8')).hexdigest()
-
-    def __gen_session_key(self, data: Dict[str, str or int]) -> Dict[str, str]:
+    @staticmethod
+    def __gen_session_key(data: Dict[str, str or int]) -> Dict[str, str]:
         response = post(
             url='https://appsmail.ru/oauth/token',
             headers={
@@ -80,7 +73,8 @@ class MyMailScraper(Scraper):
 
         return response.json()
 
-    def __get_data(self, data: Dict[str, str or int]) -> Dict[str, str]:
+    @staticmethod
+    def __get_data(data: Dict[str, str or int]) -> Dict[str, str]:
         response = post(
             url='http://www.appsmail.ru/platform/api/',
             data=data,
@@ -92,6 +86,15 @@ class MyMailScraper(Scraper):
             return {}
 
         return response.json()
+
+    def __gen_sig_key(self, data: Dict[str, str]) -> str:
+        sort = dict(sorted(data.items()))
+        params = ''.join(
+            [(k + '=' + v) for k, v in sort.items()]
+        )
+        params = self.uid + params + self.app_private_key
+
+        return md5(params.encode('utf-8')).hexdigest()
 
     def get_parsed_data(self) -> Dict[str, str or Dict]:
         return self.parsed_data

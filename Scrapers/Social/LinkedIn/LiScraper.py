@@ -30,7 +30,8 @@ class LiScraper(Scraper):
 
         return api
 
-    def __extract_data(self, data: Dict[str, Dict], key: str) -> Dict or str:
+    @staticmethod
+    def __extract_data(data: Dict[str, Dict], key: str) -> Dict or str:
         return data.get(key) if key in data else ''
 
     def get_parsed_data(self) -> Dict[str, str or Dict]:
