@@ -2,31 +2,31 @@
 HOST = '127.0.0.1'
 PORT = 7654
 
-# Vkontakte
+# vkontakte
 VK_APP_VERSION = 5.126
 VK_APP_ID = 12345678
 VK_APP_SECRET_KEY = ''
 VK_APP_SERVICE_KEY = ''
 VK_APP_ACCESS_TOKEN = ''
 
-# Facebook
+# facebook
 FB_APP_VERSION = 9.0
 FB_APP_ID = 123456789123456789
 FB_CLIENT_MARKER = ''
 FB_APP_SECRET_KEY = ''
 FB_APP_ACCESS_KEY = ''
 
-# Twitter
+# twitter
 TW_CONSUMER_KEY = ''
 TW_CONSUMER_SECRET = ''
 TW_ACCESS_TOKEN_KEY = ''
 TW_ACCESS_TOKEN_SECRET = ''
 
-# LinkedIn
+# linkedin
 LI_USERNAME = ''
 LI_PASSWORD = ''
 
-# MyMail.ru
+# mymail.ru
 MM_APP_ID = 123456
 MM_PASSWORD = ''
 MM_USERNAME = ''

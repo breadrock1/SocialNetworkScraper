@@ -44,7 +44,7 @@ class FbScraper(object):
 
     def scrape(self, user: int, user_access_token: str) -> None:
 
-        info(msg='[+]\tStarting the Facebook scraping process...', level=0)
+        info(msg='[+]\tStarting the facebook scraping process...', level=0)
 
         self.user_access_token = user_access_token
         user_info = self.__get_user_data(user_id=user)
@@ -71,4 +71,4 @@ class FbScraper(object):
                 'likes'     : likes
             })
 
-        info(msg='[+]\tThe Facebook scraping process has been done!', level=0)
+        info(msg='[+]\tThe facebook scraping process has been done!', level=0)

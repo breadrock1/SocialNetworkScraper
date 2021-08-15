@@ -3,9 +3,9 @@
 venv/
 __pycache__/
 
-# Tests data
-Tests/Users/*
-Tests/Results/*
+# tests data
+tests/Users/*
+tests/Results/*
 
 # Config File
 config.py

@@ -30,7 +30,7 @@ class TwScraper(object):
                 self.access_token_secret_key
             )
         except TwitterError as e:
-            exception(msg=f'[-]\tFailed to initialize Twitter api: {e.message}')
+            exception(msg=f'[-]\tFailed to initialize twitter api: {e.message}')
             return None
 
         return api
@@ -59,7 +59,7 @@ class TwScraper(object):
 
     def scrape(self, user: str) -> None:
 
-        info(msg='[*]\tStarting the Twitter scraping process...', level=0)
+        info(msg='[*]\tStarting the twitter scraping process...', level=0)
 
         self.api = self.__init_tw_api()
 
@@ -85,4 +85,4 @@ class TwScraper(object):
         #     'favorites' : favorites
         # })
 
-        info(msg='[+] The scraping Twitter has been done!', level=0)
+        info(msg='[+] The scraping twitter has been done!', level=0)

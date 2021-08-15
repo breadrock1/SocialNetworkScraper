@@ -10,11 +10,11 @@ from multiprocessing import Process
 result_full_scraping_response = {
     'Dehashed': {},
     'Emailrep': {},
-    'Facebook': {},
-    'LinkedIn': {},
-    'MyMail': {},
-    'Twitter': {},
-    'Vkontakte': {
+    'facebook': {},
+    'linkedin': {},
+    'mymail': {},
+    'twitter': {},
+    'vkontakte': {
         'birthday': None,
         'city': {},
         'first_name': None,

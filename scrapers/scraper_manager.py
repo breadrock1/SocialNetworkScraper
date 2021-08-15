@@ -2,13 +2,13 @@ import json
 
 from typing import Dict
 
-from Scrapers.Osint.DehashedScraper import DehashedScraper
-from Scrapers.Osint.EmailrepScraper import EmailrepScraper
-from Scrapers.Social.Facebook.FbScraper import FbScraper
-from Scrapers.Social.LinkedIn.LiScraper import LiScraper
-from Scrapers.Social.MyMail.MyMailScraper import MyMailScraper
-from Scrapers.Social.Twitter.TwScraper import TwScraper
-from Scrapers.Social.Vkontakte.VkScraper import VkScraper
+from scrapers.osint.DehashedScraper import DehashedScraper
+from scrapers.osint.EmailrepScraper import EmailrepScraper
+from scrapers.social.facebook.FbScraper import FbScraper
+from scrapers.social.linkedin.LiScraper import LiScraper
+from scrapers.social.mymail.MyMailScraper import MyMailScraper
+from scrapers.social.twitter.TwScraper import TwScraper
+from scrapers.social.vkontakte.VkScraper import VkScraper
 
 
 class ScraperManager(object):
@@ -38,21 +38,21 @@ class ScraperManager(object):
         tw_scraper = TwScraper()
         mm_scraper = MyMailScraper()
 
-        if 'Vkontakte' in credentials:
-            vk_id = credentials.get('Vkontakte').get('id')
+        if 'vkontakte' in credentials:
+            vk_id = credentials.get('vkontakte').get('id')
             vk_scraper.scrape(user=vk_id)
 
-        if 'LinkedIn' in credentials:
-            li_id = credentials.get('LinkedIn').get('id')
+        if 'linkedin' in credentials:
+            li_id = credentials.get('linkedin').get('id')
             li_scraper.scrape(user_id=li_id)
 
-        if 'Twitter' in credentials:
-            tw_id = credentials.get('Twitter').get('id')
+        if 'twitter' in credentials:
+            tw_id = credentials.get('twitter').get('id')
             tw_scraper.scrape(user=tw_id)
 
-        if 'Facebook' in credentials:
-            fb_id = credentials.get('Facebook').get('id')
-            fb_token = credentials.get('Facebook').get('user_access_token')
+        if 'facebook' in credentials:
+            fb_id = credentials.get('facebook').get('id')
+            fb_token = credentials.get('facebook').get('user_access_token')
 
             fb_scraper.scrape(user=fb_id, user_access_token=fb_token)
 
@@ -61,9 +61,9 @@ class ScraperManager(object):
             mm_scraper.scrape(email=mm_id)
 
         return {
-            'Vkontakte': vk_scraper.get_parsed_data(),
-            'Facebook': fb_scraper.get_parsed_data(),
-            'Twitter': tw_scraper.get_parsed_data(),
-            'MyMail': mm_scraper.get_parsed_data(),
-            'LinkedIn': li_scraper.get_parsed_data()
+            'vkontakte': vk_scraper.get_parsed_data(),
+            'facebook': fb_scraper.get_parsed_data(),
+            'twitter': tw_scraper.get_parsed_data(),
+            'mymail': mm_scraper.get_parsed_data(),
+            'linkedin': li_scraper.get_parsed_data()
         }

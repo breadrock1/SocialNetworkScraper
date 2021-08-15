@@ -21,7 +21,7 @@ class LiScraper(object):
         try:
             api = Linkedin(self.app_user, self.app_passwd)
         except Exception as e:
-            exception(msg=f'[-]\tFailed to initialize LinkedIn api: {e}')
+            exception(msg=f'[-]\tFailed to initialize linkedin api: {e}')
             return None
 
         return api
@@ -34,7 +34,7 @@ class LiScraper(object):
 
     def scrape(self, user_id: str or int) -> None:
 
-        info(msg='[*]\tStarting the LinkedIn scraping process...', level=0)
+        info(msg='[*]\tStarting the linkedin scraping process...', level=0)
 
         self.api = self.__init_api()
 
@@ -59,4 +59,4 @@ class LiScraper(object):
                 'city'          : city
             })
 
-        info(msg='[+]\tThe LinkedIn scraping process has been done!', level=0)
+        info(msg='[+]\tThe linkedin scraping process has been done!', level=0)

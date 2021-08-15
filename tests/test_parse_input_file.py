@@ -15,21 +15,21 @@ def _readInputData(path: str) -> Dict[str, Dict]:
 
 
 def test_parse_input_file():
-    path_to_file = (Path() / 'Tests' / 'Users' / 'yuliya_chesnokova.json').absolute()
+    path_to_file = (Path() / 'tests' / 'Users' / 'yuliya_chesnokova.json').absolute()
     credentials = _readInputData(str(path_to_file))
 
     try:
-        assert 'Twitter' in credentials
-        assert 'Facebook' in credentials
-        assert 'LinkedIn' in credentials
+        assert 'twitter' in credentials
+        assert 'facebook' in credentials
+        assert 'linkedin' in credentials
         assert 'MyMailRu' in credentials
-        assert 'Vkontakte' in credentials
+        assert 'vkontakte' in credentials
 
-        assert credentials.get('Vkontakte').get('id') == '633470190'
-        assert credentials.get('Twitter').get('id') == 'Yulia58368327'
-        assert credentials.get('Facebook').get('id') == '101313718664029'
+        assert credentials.get('vkontakte').get('id') == '633470190'
+        assert credentials.get('twitter').get('id') == 'Yulia58368327'
+        assert credentials.get('facebook').get('id') == '101313718664029'
         assert credentials.get('MyMailRu').get('id') == 'yuliya.chesnok.88@bk.ru'
-        assert credentials.get('LinkedIn').get('id') == 'yulia-chesnokova-590525207'
+        assert credentials.get('linkedin').get('id') == 'yulia-chesnokova-590525207'
     except AssertionError as e:
         print(f'Assertion failed: {e}')
         exit(-1)

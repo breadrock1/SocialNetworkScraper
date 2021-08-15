@@ -49,7 +49,7 @@ class VkScraper(object):
 
     def scrape(self, user: int or str) -> None:
 
-        info(msg='[*]\tStarting the Vkontakte scraping process...', level=0)
+        info(msg='[*]\tStarting the vkontakte scraping process...', level=0)
 
         # first name, last name, date of birth, city
         vk_data = self.__get_vk_data(
@@ -160,4 +160,4 @@ class VkScraper(object):
             'posts'     : user_wall
         })
 
-        info(msg='[+]\tThe Vkontakte scraping process has been done!', level=0)
+        info(msg='[+]\tThe vkontakte scraping process has been done!', level=0)

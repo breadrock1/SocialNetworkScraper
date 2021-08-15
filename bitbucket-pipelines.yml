@@ -8,10 +8,10 @@ pipelines:
           - pip install flake8
           - flake8 . --config .flake8 --show-source --statistics
     - step:
-        name: Run Tests
+        name: Run tests
         caches:
           - pip
         script:
           - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           - pip install pytest
-          - pytest -v Tests/* --junitxml=test-reports/report.xml
+          - pytest -v tests/* --junitxml=test-reports/report.xml
