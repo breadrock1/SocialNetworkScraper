@@ -4,7 +4,7 @@ from typing import Dict
 from flask import Flask, request, abort
 
 from config import HOST, PORT
-from Scrapers.ScraperManager import ScraperManager
+from Scrapers.scraper_manager import ScraperManager
 
 
 app = Flask(__name__)

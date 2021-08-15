@@ -32,38 +32,38 @@ class ScraperManager(object):
 
     @staticmethod
     def scrapeSocialNetworks(credentials: Dict[str, Dict]) -> Dict:
-        vkScraper = VkScraper()
-        liScraper = LiScraper()
-        fbScraper = FbScraper()
-        twScraper = TwScraper()
-        mmScraper = MyMailScraper()
+        vk_scraper = VkScraper()
+        li_scraper = LiScraper()
+        fb_scraper = FbScraper()
+        tw_scraper = TwScraper()
+        mm_scraper = MyMailScraper()
 
         if 'Vkontakte' in credentials:
             vk_id = credentials.get('Vkontakte').get('id')
-            vkScraper.scrape(user=vk_id)
+            vk_scraper.scrape(user=vk_id)
 
         if 'LinkedIn' in credentials:
             li_id = credentials.get('LinkedIn').get('id')
-            liScraper.scrape(user_id=li_id)
+            li_scraper.scrape(user_id=li_id)
 
         if 'Twitter' in credentials:
             tw_id = credentials.get('Twitter').get('id')
-            twScraper.scrape(user=tw_id)
+            tw_scraper.scrape(user=tw_id)
 
         if 'Facebook' in credentials:
             fb_id = credentials.get('Facebook').get('id')
             fb_token = credentials.get('Facebook').get('user_access_token')
 
-            fbScraper.scrape(user=fb_id, user_access_token=fb_token)
+            fb_scraper.scrape(user=fb_id, user_access_token=fb_token)
 
         if 'MyMailRu' in credentials:
             mm_id = credentials.get('MyMailRu').get('id')
-            mmScraper.scrape(email=mm_id)
+            mm_scraper.scrape(email=mm_id)
 
         return {
-            'Vkontakte': vkScraper.get_parsed_data(),
-            'Facebook': fbScraper.get_parsed_data(),
-            'Twitter': twScraper.get_parsed_data(),
-            'MyMail': mmScraper.get_parsed_data(),
-            'LinkedIn': liScraper.get_parsed_data()
+            'Vkontakte': vk_scraper.get_parsed_data(),
+            'Facebook': fb_scraper.get_parsed_data(),
+            'Twitter': tw_scraper.get_parsed_data(),
+            'MyMail': mm_scraper.get_parsed_data(),
+            'LinkedIn': li_scraper.get_parsed_data()
         }
