@@ -13,7 +13,7 @@ class EmailrepScraper(object):
 
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
         try:
-            data = get(
+            return get(
                 url=f'https://emailrep.io/{email}',
                 headers={
                     'Key': self.api_key,
@@ -21,21 +21,16 @@ class EmailrepScraper(object):
                 },
                 verify=False,
                 allow_redirects=False
-            )
-        except RequestException as e:
-            exception(msg=f'[!]\tError while getting user information: {e.strerror}')
-            return {}
+            ).json()
 
-        try:
-            return data.json()
-        except JSONDecodeError:
+        except RequestException or JSONDecodeError as e:
+            exception(msg=f'[!]\tError while getting user information: {e.strerror}')
             return {}
 
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data
 
     def scrape(self, user_email: str) -> None:
-
         info(msg='[+]\tStarting the Emailrep scraping process...', level=0)
 
         self.parsed_data.update(
