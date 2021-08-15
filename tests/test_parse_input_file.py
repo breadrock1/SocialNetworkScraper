@@ -4,11 +4,9 @@ from pathlib import Path
 from os.path import basename
 
 
-def _readInputData(path: str) -> Dict[str, Dict]:
+def _read_input_data(path: str) -> Dict[str, Dict]:
     with open(path, 'r') as file:
-        data = load(
-            file
-        )
+        data = load(file)
         file.close()
 
     return data
@@ -16,7 +14,7 @@ def _readInputData(path: str) -> Dict[str, Dict]:
 
 def test_parse_input_file():
     path_to_file = (Path() / 'tests' / 'users' / 'yuliya_chesnokova.json').absolute()
-    credentials = _readInputData(str(path_to_file))
+    credentials = _read_input_data(str(path_to_file))
 
     try:
         assert 'twitter' in credentials

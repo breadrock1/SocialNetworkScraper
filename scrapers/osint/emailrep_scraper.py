@@ -15,7 +15,7 @@ class EmailrepScraper(object):
         try:
             return response_data.json()
         except JSONDecodeError as e:
-            print(f'Error while parsing response json data...')
+            print('Error while parsing response json data...')
             return {}
 
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
