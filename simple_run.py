@@ -23,9 +23,7 @@ def _writeOutResults(results: str, data: Dict) -> None:
 
 def _readInputData(path: str) -> Dict[str, Dict]:
     with open(path, 'r') as file:
-        data = load(
-            file
-        )
+        data = load(file)
         file.close()
 
     return data
@@ -35,16 +33,16 @@ def _runScraperScripts(args: Namespace):
     info(msg='[+]\tStarting scraper process...')
 
     results_dir = args.o
-    user_creds_file = args.u
+    user_credentials_file = args.u
 
-    user_creds = _readInputData(path=user_creds_file)
+    user_credentials = _readInputData(path=user_credentials_file)
 
     scraped_data = {}
     scraped_data.update(
-        ScraperManager.scrapeOSINTSites(credentials=user_creds)
+        ScraperManager.scrapeOSINTSites(credentials=user_credentials)
     )
     scraped_data.update(
-        ScraperManager.scrapeSocialNetworks(credentials=user_creds)
+        ScraperManager.scrapeSocialNetworks(credentials=user_credentials)
     )
 
     _writeOutResults(
