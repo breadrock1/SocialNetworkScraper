@@ -13,33 +13,25 @@ class DehashedScraper(object):
 
     # TODO: Need add optional to choose email or phone or ... parameter
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
-        keys = f'query=email:{email}'
-        url = f'https://api.dehashed.com/search?{keys}'
-
         try:
-            data = get(
-                url=url,
+            return get(
+                url=f'https://api.dehashed.com/search?query=email:{email}',
                 headers={
                     'Key': self.api_key,
                     'User-Agent': 'Mozilla/5.0 CvCodeApp'
                 },
                 verify=False,
                 allow_redirects=False
-            )
-        except RequestException as e:
-            exception(msg=f'[!]\tError while getting user information: {e.strerror}')
-            return {}
+            ).json()
 
-        try:
-            return data.json()
-        except JSONDecodeError:
+        except RequestException or JSONDecodeError as e:
+            exception(msg=f'[!]\tError while getting user information: {e.strerror}')
             return {}
 
     def get_parsed_data(self) -> Dict[str, Dict]:
         return self.parsed_data
 
     def scrape(self, user_email: str, user_phone=str or None) -> None:
-
         info(msg='[+]\tStarting the Dehashed scraping process...', level=0)
 
         self.parsed_data.update(
