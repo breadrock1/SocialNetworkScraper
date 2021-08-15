@@ -43,7 +43,6 @@ class FbScraper(object):
         return self.parsed_data
 
     def scrape(self, user: int, user_access_token: str) -> None:
-
         info(msg='[+]\tStarting the facebook scraping process...', level=0)
 
         self.user_access_token = user_access_token

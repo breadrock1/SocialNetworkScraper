@@ -48,7 +48,6 @@ class VkScraper(object):
         return self.parsed_data
 
     def scrape(self, user: int or str) -> None:
-
         info(msg='[*]\tStarting the vkontakte scraping process...', level=0)
 
         # first name, last name, date of birth, city

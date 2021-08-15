@@ -58,7 +58,6 @@ class TwScraper(object):
         return self.parsed_data
 
     def scrape(self, user: str) -> None:
-
         info(msg='[*]\tStarting the twitter scraping process...', level=0)
 
         self.api = self.__init_tw_api()

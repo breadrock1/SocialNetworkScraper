@@ -33,7 +33,6 @@ class LiScraper(object):
         return self.parsed_data
 
     def scrape(self, user_id: str or int) -> None:
-
         info(msg='[*]\tStarting the linkedin scraping process...', level=0)
 
         self.api = self.__init_api()
