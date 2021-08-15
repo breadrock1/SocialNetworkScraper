@@ -1,7 +1,7 @@
 from typing import Dict
 from json import JSONDecodeError
 from logging import exception, info
-from requests import get, RequestException
+from requests import get, Response, RequestException
 
 from config import EMAILREP_API_KEY
 
@@ -11,9 +11,16 @@ class EmailrepScraper(object):
         self.parsed_data = {}
         self.api_key = EMAILREP_API_KEY
 
+    def __parse_response_data(self, response_data: Response) -> Dict:
+        try:
+            return response_data.json()
+        except JSONDecodeError as e:
+            print(f'Error while parsing response json data...')
+            return {}
+
     def __get_user_data(self, email: str) -> Dict[str, Dict or str] or None:
         try:
-            return get(
+            response = get(
                 url=f'https://emailrep.io/{email}',
                 headers={
                     'Key': self.api_key,
@@ -21,7 +28,9 @@ class EmailrepScraper(object):
                 },
                 verify=False,
                 allow_redirects=False
-            ).json()
+            )
+
+            return self.__parse_response_data(response_data=response)
 
         except RequestException or JSONDecodeError as e:
             exception(msg=f'[!]\tError while getting user information: {e.strerror}')
