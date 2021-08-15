@@ -73,7 +73,7 @@ if __name__ == '__main__':
     argumentParser.add_argument(
         '-o', metavar='--output-file', type=str, required=False,
         help='Specify path to output file.',
-        default=str(Path() / 'Results')
+        default=str(Path() / 'results')
     )
 
     arguments = argumentParser.parse_args()

@@ -36,7 +36,7 @@ def _createProcess() -> Process:
 
 
 def _readUserFile() -> json:
-    file_path = Path('Users', 'yuliya_chesnokova.json').absolute()
+    file_path = Path('users', 'yuliya_chesnokova.json').absolute()
     user_file = open(str(file_path), 'rb')
 
     return json.load(user_file)

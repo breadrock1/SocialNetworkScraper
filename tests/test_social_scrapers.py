@@ -1,8 +1,8 @@
-from scrapers.social.facebook.FbScraper import FbScraper
-from scrapers.social.linkedin.LiScraper import LiScraper
-from scrapers.social.twitter.TwScraper import TwScraper
-from scrapers.social.mymail.MyMailScraper import MyMailScraper
-from scrapers.social.vkontakte.VkScraper import VkScraper
+from scrapers.social.facebook.fb_scraper import FbScraper
+from scrapers.social.linkedin.li_scraper import LiScraper
+from scrapers.social.twitter.tw_scraper import TwScraper
+from scrapers.social.mymail.my_mail_scraper import MyMailScraper
+from scrapers.social.vkontakte.vk_scraper import VkScraper
 
 
 # TODO: Some tests for modules TwitterScraper, FacebookScraper and MyMailScraper are not available coz need API Keys

@@ -1,5 +1,5 @@
-from scrapers.osint.DehashedScraper import DehashedScraper
-from scrapers.osint.EmailrepScraper import EmailrepScraper
+from scrapers.osint.dehashed_scraper import DehashedScraper
+from scrapers.osint.emailrep_scraper import EmailrepScraper
 
 
 def test_osint_scrapers():
