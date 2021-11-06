@@ -1,12 +1,27 @@
 # Social Network Scraper
 
-## Installation project
-First need install requirements:
-```shell
-   $ pip3 install -r requirements.txt
-```
+![GitHub](https://badgen.net/badge/icon/github?icon=github&label)
+![version](https://img.shields.io/badge/version-1.1-blue)
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=darkgreen)
+
+## What is scraping?
+
+Web scraping is simply the process of using a social media web scraper to gather data automatically. It saves users time, effort and sometimes money since it’s an automatic process performed by bots. You could take the time to search the web for all mentions of a certain word or find all prices for a certain product, but that would take a lot of time.
+
+In certain cases, it might even be impossible for one person to do it on their own. I mean, think about it. Can you imagine scrolling through page after page of a website, writing down every single mention of a word, analyzing the context of that word and putting it all in an easy-to-read format that other people can understand? I can’t imagine doing that, and I don’t think I’m the only one.
+
+That’s why we have social media web scrapers to do that work for us. Web scraping these sites is easy as pie, especially if you have the right tools to help you. (More on that later.) All you have to do is tell the scraper what information you want to collect and it will parse through hypertext markup language on the social media platform. This information can range anywhere from collecting usernames, finding followers, collecting comments and analyzing conversations that include your keywords. Of course, it’s possible to use this information to gather sensitive data and manipulate others, and some people do it. But that’s not (and shouldn’t be) the goal. Done correctly, web scraping can really help individuals accomplish their personal and professional goals by helping them collect valuable data and give that data meaning.
 
 ***
+
+## Installation project
+
+First need install requirements:
+```shell
+$ pip3 install -r requirements.txt
+```
 
 ## Setting up config file
 Edit the `config.py` file with private app`s information.
